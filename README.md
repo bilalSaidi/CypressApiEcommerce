@@ -244,7 +244,7 @@ The CI pipeline automatically creates the Cypress configuration file with:
 - **API Security** - Proper authentication testing
 - **Data Privacy** - All data is from public practice API (no sensitive data)
 
-## � Public Practice API
+## 🌐 Public Practice API
 
 This project uses the **Toolshop Practice API**, a public testing environment designed for learning and portfolio purposes.
 
@@ -272,21 +272,6 @@ This practice API is designed to demonstrate:
 - Schema validation
 - Test data management
 
-## �🎯 Skills Demonstrated
-
-This project showcases proficiency in:
-
-- **API Testing** - REST API validation and testing patterns
-- **Test Automation** - Cypress framework expertise
-- **JavaScript** - Modern ES6+ development
-- **CI/CD** - GitHub Actions pipeline configuration
-- **Schema Validation** - JSON Schema and contract testing
-- **Test Design** - Comprehensive test coverage strategies
-- **DevOps** - Automated testing and deployment
-- **Documentation** - Clear, comprehensive project documentation
-- **Security** - Secure credential and secret management
-- **Quality Assurance** - Enterprise-level testing practices
-
 ## 📈 Future Enhancements
 
 Potential improvements for this project:
@@ -303,8 +288,9 @@ Potential improvements for this project:
 
 **This project demonstrates enterprise-level API testing capabilities and modern software development practices suitable for production environments.**
 
+## 🔧 Technical Implementation Details
 
-## CRUD Workflow
+### CRUD Workflow
 
 The CRUD tests intentionally run as an ordered workflow because later operations need the user created by earlier operations:
 
@@ -317,7 +303,7 @@ The CRUD tests intentionally run as an ordered workflow because later operations
 7. DELETE the user and expect `204` with an empty response body.
 8. GET the deleted user and expect `404` with `Requested item not found`.
 
-## Delete Cleanup And Endpoint Validation
+### Delete Cleanup And Endpoint Validation
 
 The DELETE operation has two purposes in this project:
 
@@ -326,25 +312,25 @@ The DELETE operation has two purposes in this project:
 
 This keeps the test environment clean while also testing the complete delete behavior.
 
-## Solutions To API Limitations
+### Solutions To API Limitations
 
-### The create response does not return the user ID
+#### The create response does not return the user ID
 
 The registration response confirms creation but does not provide the new user's ID. The update, GET-by-ID, and DELETE endpoints require that ID.
 
 The test therefore requests `/users`, searches the returned `data` array by the unique Faker-generated email, and stores the matching user's ID.
 
-### The users response is paginated
+#### The users response is paginated
 
 The users endpoint does not return one complete flat array. Its response contains pagination metadata such as `current_page`, `last_page`, and a `data` array.
 
 The ID lookup starts on page 1, searches `data`, and requests the next page until the user is found or `last_page` is reached.
 
-### Error responses are asserted explicitly
+#### Error responses are asserted explicitly
 
 For expected HTTP errors, the test uses `failOnStatusCode: false`. This lets Cypress return the response so the test can assert the expected status and message instead of failing before the assertion runs.
 
-## Test Data
+### Test Data
 
 `cypress/fixtures/user.js` uses Faker to export both:
 
@@ -352,20 +338,6 @@ For expected HTTP errors, the test uses `failOnStatusCode: false`. This lets Cyp
 - `updatedUser` for the update request and field-by-field verification
 
 The same generated `newUser` object is reused for the duplicate-registration test, ensuring the email is identical.
-
-## Project Structure
-
-```text
-cypress/
-  e2e/
-    users.cy.js
-  fixtures/
-    user.js
-  support/
-    commands.js
-cypress.config.js
-package.json
-```
 
 ## Design Note
 
