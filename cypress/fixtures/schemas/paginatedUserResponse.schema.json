@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PaginatedUserResponse",
+  "type": "object",
+  "properties": {
+    "current_page": { "type": "integer" },
+    "data": {
+      "type": "array",
+      "items": { "$ref": "userResponse.schema.json" }
+    },
+    "from": { "type": ["integer", "null"] },
+    "last_page": { "type": "integer" },
+    "per_page": { "type": "integer" },
+    "to": { "type": ["integer", "null"] },
+    "total": { "type": "integer" }
+  },
+  "required": ["current_page", "data", "last_page", "per_page", "total"],
+  "additionalProperties": true
+}

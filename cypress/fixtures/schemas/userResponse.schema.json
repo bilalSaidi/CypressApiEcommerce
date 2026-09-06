@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "userResponse.schema.json",
+  "title": "UserResponse",
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer" },
+    "first_name": { "type": "string" },
+    "last_name": { "type": "string" },
+    "address": { "type": "string" },
+    "city": { "type": "string" },
+    "state": { "type": ["string", "integer", "null"] },
+    "country": { "type": "string" },
+    "postcode": { "type": ["string", "integer", "null"] },
+    "phone": { "type": ["string", "integer", "null"] },
+    "dob": { "type": "string" },
+    "email": { "type": "string" }
+  },
+  "required": [
+    "id",
+    "first_name",
+    "last_name",
+    "address",
+    "city",
+    "state",
+    "country",
+    "postcode",
+    "phone",
+    "dob",
+    "email"
+  ],
+  "additionalProperties": true
+}
