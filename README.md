@@ -25,10 +25,9 @@ A comprehensive Cypress API automation framework demonstrating advanced testing 
 - **Negative Testing** - Unauthorized access, duplicate registration, invalid data
 
 ### CI/CD & DevOps
-- **GitHub Actions** - Automated testing pipeline with matrix strategy
-- **Multi-Node Testing** - Node.js 18 & 20 compatibility validation
+- **GitHub Actions** - Automated testing pipeline with Node.js 22
 - **Artifact Management** - Screenshot and video capture for debugging
-- **Secret Management** - Secure credential handling via GitHub Secrets
+- **Environment Configuration** - Dynamic Cypress config creation in CI
 - **Branch Protection** - Quality gates for code merging
 
 ## 🛠️ Technology Stack
@@ -43,7 +42,7 @@ A comprehensive Cypress API automation framework demonstrating advanced testing 
 ## 📋 Setup & Installation
 
 ### Prerequisites
-- Node.js 18+ 
+- Node.js 22+ 
 - npm or yarn
 - Git
 
@@ -60,10 +59,12 @@ A comprehensive Cypress API automation framework demonstrating advanced testing 
    npm install
    ```
 
-3. **Configure environment** (optional for local development)
+3. **Run tests** (config is created automatically in CI, or create locally)
    ```bash
-   # Copy example config if needed
-   cp cypress.config.example.js cypress.config.js
+   # For local development, create cypress.config.js with:
+   # baseUrl: https://api-with-bugs.practicesoftwaretesting.com
+   # AdminEmail: admin@practicesoftwaretesting.com
+   # AdminPassword: welcome01
    ```
 
 ### Running Tests
@@ -205,24 +206,23 @@ findUserOnPage(userEmail, AdminToken, 1).then((id) => {
 - Manual workflow dispatch
 
 **Matrix Strategy:**
-- **Node.js versions**: 18, 20
+- **Node.js version**: 22 (required for Cypress 16)
 - **Browser**: Chrome
 - **OS**: Ubuntu Latest
 
 **Pipeline Features:**
-- **Parallel Execution** - Multiple Node versions simultaneously
+- **Dynamic Config Creation** - Cypress config created in CI environment
 - **Artifact Collection** - Screenshots and videos on failures
-- **Secret Management** - Secure credential injection
+- **Environment Variables** - Direct credential configuration
 - **Quality Gates** - Branch protection rules
 
-### Required Secrets
+### Configuration
 
-Configure these in your GitHub repository:
-
-| Secret | Description | Example |
-|--------|-------------|---------|
-| `CYPRESS_ADMIN_EMAIL` | Admin user email | `admin@example.com` |
-| `CYPRESS_ADMIN_PASSWORD` | Admin user password | `securePassword123` |
+The CI pipeline automatically creates the Cypress configuration file with:
+- **Base URL:** https://api-with-bugs.practicesoftwaretesting.com
+- **Admin Credentials:** Public demo credentials (no secrets needed)
+- **Browser:** Chrome
+- **Node.js:** Version 22
 
 ## 📊 Quality Assurance
 
