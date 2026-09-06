@@ -13,7 +13,7 @@ jobs:
     
     strategy:
       matrix:
-        node-version: [18, 20]
+        node-version: [22]
     
     steps:
       - name: Checkout code
@@ -28,12 +28,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Create Cypress config
+        run: |
+          cat > cypress.config.js << EOF
+          const { defineConfig } = require("cypress");
+          
+          module.exports = defineConfig({
+            env: {
+              AdminEmail: "admin@practicesoftwaretesting.com",
+              AdminPassword: "welcome01"
+            },
+            e2e: {
+              baseUrl: "https://api-with-bugs.practicesoftwaretesting.com",
+              setupNodeEvents(on, config) {
+                // implement node event listeners here
+              },
+            },
+          });
+          EOF
+
       - name: Debug environment
         run: |
           echo "Node version: $(node --version)"
           echo "NPM version: $(npm --version)"
           echo "Cypress version: $(npx cypress version)"
           ls -la
+          cat cypress.config.js
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
