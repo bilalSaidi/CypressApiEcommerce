@@ -50,7 +50,7 @@ A comprehensive Cypress API automation framework demonstrating advanced testing 
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/bilalSaidi/CypressApiEcommerce.git
    cd APICYPRESS
    ```
 
@@ -133,7 +133,6 @@ cy.login().then((token) => {
 ```
 
 **Features:**
-- **Environment-based credentials** - Secure credential management
 - **Token validation** - Verifies successful authentication
 - **Reusability** - Single login for entire test suite
 - **Error handling** - Proper failure scenarios
@@ -278,11 +277,8 @@ Potential improvements for this project:
 
 - **Visual Testing** - Screenshot comparison
 - **Performance Testing** - Load and stress testing
-- **API Mocking** - Isolated unit testing
 - **Reporting** - Enhanced test reporting and analytics
 - **Parallelization** - Cypress Cloud integration
-- **Cross-browser** - Additional browser support
-- **Mobile Testing** - Responsive API testing
 
 ---
 
